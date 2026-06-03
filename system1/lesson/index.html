@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+
+  <title>NTP</title>
+
+  <!--<link href="./styles.css" rel="stylesheet" type="text/css">-->
+  <!--<script src="./main.js" type="module"></script>-->
+  <style>
+
+    :root {
+      /*--aspect-w: 16;*/
+      /*--aspect-h: 10;*/
+
+      /* Aspect ratio 88:125 based on 176x250 (w x h) which I think was a portrait A4 page */
+      --aspect-w: 125;
+      --aspect-h: 88;
+      --aspect: var(--aspect-w) / var(--aspect-h);
+      --aspect-invert: var(--aspect-h) / var(--aspect-w);
+
+      --zoom: 1;
+      --zoom-x: 50%;
+      --zoom-y: 50%;
+    }
+
+    html {
+      font-family: -system-ui, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, apple color emoji, segoe ui emoji, segoe ui symbol, sans-serif;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      background-image: linear-gradient(0deg, #0008, #000c);
+      background-color: #d8d5ff;
+    }
+
+    #container {
+      width: 100%;
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      container-type: inline-size;
+
+      width: 100%;
+      aspect-ratio: var(--aspect);
+      max-width: calc(100vh * var(--aspect));
+
+      transition: scale 800ms cubic-bezier(0.4, 0, 0.2, 1);
+      /*scale: 2;*/
+      transform-origin: var(--zoom-x) var(--zoom-y);
+      scale: var(--zoom);
+    }
+
+    #spread {
+      width: 100%;
+      /*height: 100%;*/
+      /*position: absolute;*/
+      display: flex;
+      flex-direction: row;
+      box-shadow: 0 0 2em 2em #0005;
+      position: relative;
+      z-index: 1;
+    }
+
+    #spread img {
+      display: block;
+      overflow: hidden;
+      height: 100%;
+      flex: 50% 0 0;
+      object-fit: cover;
+    }
+
+    #overlays {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+
+      font-family: 'Myriad Pro', sans-serif;
+      color: #fff;
+      font-size: 1cqw;
+    }
+
+    #zones {
+      width: 100%;
+      height: 100%;
+      /*box-shadow: inset 0 0 0 2px red;*/
+      display: flex;
+      flex-direction: row;
+    }
+
+    .zone-column {
+      flex: 50% 0 0;
+      display: flex;
+      flex-direction: column;
+      /*box-shadow: inset 0 0 0 2px blue;*/
+    }
+
+    .zone {
+      /*box-shadow: inset 0 0 0 2px green;*/
+      width: 100%;
+      cursor: pointer;
+    }
+    .zone:hover {
+      /*background-color: #0f03;*/
+      box-shadow: 0 0 0 2px #ff0;
+    }
+
+    #zone-header   { flex: 5.3em 0 0; }
+    #zone-point    { flex: 21.6em 0 0; }
+    #zone-conv     { flex: 16.7em 0 0; }
+    #zone-wordbank { flex: 24.5em 0 0; }
+
+    #zone-listening1 { flex: 18em 0 0; }
+    #zone-practice1  { flex: 17.5em 0 0; }
+    #zone-practice2  { flex: 17.5em 0 0; }
+    #zone-production { flex: 6em 0 0; }
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="spread">
+      <img src="./img/L12-P1-200.jpg" alt="Page 1" width="1432" height="2023"">
+      <img src="./img/L12-P2-200.jpg" alt="Page 2" width="1432" height="2023"">
+    </div>
+    <div id="overlays">
+      <div id="zones">
+        <div class="zone-column column-left" id="page1">
+          <div class="zone" id="zone-header"></div>
+          <div class="zone" id="zone-point"></div>
+          <div class="zone" id="zone-conv"></div>
+          <div class="zone" id="zone-wordbank"></div>
+        </div>
+        <div class="zone-column column-right" id="page2">
+          <div class="zone" id="zone-listening1"></div>
+          <div class="zone" id="zone-practice1"></div>
+          <div class="zone" id="zone-practice2"></div>
+          <div class="zone" id="zone-production"></div>
+        </div>
+      </div>
+      <!--<p class="title">Hello</p>-->
+    </div>
+  </div>
+
+  <script>
+
+    const log = console.log;
+
+    const allZones = document.querySelectorAll('.zone');
+    allZones.forEach(zone => zone.addEventListener('click', zoneClick));
+
+    let zoom = 1;
+    const zoomLimits = { min: 1, max: 3 };
+
+    function zoneClick(event) {
+      log(event);
+      const zone = event.currentTarget;
+      log(zone.parentNode);
+      const rect = zone.getBoundingClientRect();
+      // const center = { x: rect.x + (rect.width/2), y: rect.y + (rect.height/2) }
+      const center = { x: rect.x, y: rect.y }
+      log(center)
+      const x =
+        zone.parentNode.classList.contains('column-left')  ? '0%' :
+        zone.parentNode.classList.contains('column-right') ? '100%' :
+        0;
+
+      // document.documentElement.style.setProperty('--zoom-x', `${center.x}px`);
+      document.documentElement.style.setProperty('--zoom-x', x);
+      document.documentElement.style.setProperty('--zoom-y', `${center.y}px`);
+
+      zoomLevel(1);
+    }
+
+    document.body.addEventListener('contextmenu', rightClick);
+    document.body.addEventListener('dblclick', (event) => {
+      event.preventDefault();
+    });
+
+    function rightClick(event) {
+      event.preventDefault();
+      zoomLevel(-1);
+    }
+
+    function zoomLevel(delta) {
+      // log(delta);
+      const newZoom = zoom + delta;
+      zoom = (newZoom > zoomLimits.max) ? zoomLimits.max : (newZoom < zoomLimits.min) ? zoomLimits.min : newZoom;
+      document.documentElement.style.setProperty('--zoom', zoom);
+    }
+
+    zoomLevel(0);
+  </script>
+</body>
+</html>

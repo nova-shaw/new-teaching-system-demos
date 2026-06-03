@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+
+<html translate="no">
+
+<head>
+	<meta name="google" content="notranslate">
+	<title>Loading: just a moment</title>
+
+	<style type="text/css">
+		#links a {
+			display: block;
+		}
+
+		#frame {
+			text-align: center;
+		}
+
+		#title {
+			margin-bottom: 20px;
+		}
+
+		#pass::placeholder {
+			color: #ddd;
+		}
+
+		#enter {
+			background-color: dodgerblue;
+			color: white;
+			width: 40%;
+			margin: 20px auto;
+			border-radius: 5px;
+			min-width: 170px;
+			max-width: 170px;
+			min-height: 24px;
+			max-height: 24px;
+			cursor: pointer;
+		}
+
+		#error {
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="frame">
+		<div id="title">Please enter login password.</div>
+		<div id="error" style="display: none">Password Required <span id="hint"></span> </div>
+		<input id="pass" type="password" placeholder="password." />
+		<div id="enter">Login</div>
+	</div>
+
+	<script type="text/javascript">
+		document.querySelector('#enter').addEventListener('click', e => {
+      window.location.href = './menu.html';
+		});
+	</script>
+</body>
+</html>

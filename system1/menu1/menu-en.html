@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start Online</title>
+    <link href="./css/menu-en.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="navHeader">English Online</header>
+
+      <div class="main" id="main">
+        <ul class="lessonGroups sub-menu">
+          <li><a href="zlesson-nto-temp/lesson.html">NEW English Textbook</a> <span style="font-weight: bold; color: red;">&larr; this one</span></li>
+          <li><a href="zlesson/lesson.htm">English Lessons (Original 2025)</a></li>
+          <li><a href="novascore/novascoremenu.html">Nova Score</a></li>
+          <li><a href="kids/KidsMenu.htm">Nova Kids</a></li>
+          <li><a href="kids-class-2/KidsMenuFull.htm">Nova Kids Class 2</a></li>
+          <li><a href="specialmxm/index.html">Special MxM Courses</a></li>
+          <li><a href="lesson/lesson.htm">Diplomat Lessons</a></li>
+          <li><a href="demo/menu.htm">Demo</a></li>
+          <li><a href="business/business.htm">Business</a></li>
+          <li><a href="toefl/index.html">TOEFL iBT (2026)</a></li>
+          <li><a href="toeic450/toeic450.htm">TOEIC 450</a></li>
+          <li><a href="toeic600/toeic600.htm">TOEIC 600</a></li>
+          <li><a href="toeic700/toeic700.htm">TOEIC 700</a></li>
+          <li><a href="toeic800-2025/toeic800.html">TOEIC 800 - New 2025</a></li>
+          <li><a href="sc/newstyle/wpc.htm">Weak Point Courses</a></li>
+          <li><a href="nova-plus/index.htm">Nova Plus 2</a></li>
+          <li><a href="nova-plus/index-6.htm">Nova Plus 6</a></li>
+          <li><a href="nova-plus/index-12.htm">Nova Plus 12</a></li>
+          <li><a href="kids/kids-demo-menu.html">🚧 WIP - Nova Kids Demo</a></li>
+        </ul>
+      </div>
+
+      <div class="returnLink">
+        <a href="./">◀ Homepage</a>
+      </div>
+
+    </div>
+  <script>
+   	document.querySelector('body').addEventListener('click', e => {
+      if (e.target.closest('li')) {
+        e.preventDefault();
+        window.location.href = './menu-en-list.html';
+      }
+    });
+	</script>
+</body>
+</html>
