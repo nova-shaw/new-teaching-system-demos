@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+
+  <title>Login</title>
+
+  <style type="text/css">
+    @import "../../_assets/css/base.css";
+
+    body {
+      background-image: linear-gradient(180deg, #5d76da, #474482);
+      background-image: linear-gradient(#89a5f8, #afd5ef);
+      background-image: linear-gradient(#415cac, #679ec3);
+      justify-content: center;
+    }
+
+    #form_login {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      /*align-items: flex-end;*/
+      align-items: center;
+      margin-bottom: 18vh;
+    }
+
+    input {
+      line-height: 2;
+      padding: 0 0.5em;
+    }
+    input::placeholder { color: #ccc; }
+
+    #input_name {
+
+    }
+
+    #input_password {
+
+    }
+
+    #btn_login {
+      background-color: #f1678c;
+      /*font-weight: 700;*/
+      line-height: 2;
+      border-radius: 0.25em;
+      width: 7em;
+    }
+
+    #nto-logo {
+      width: 8em;
+      height: auto;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <svg id="nto-logo" width="100%" height="100%" viewBox="0 0 192 192">
+    <path d="M59.544,131.827l0,-77.442c0,-1.469 0.806,-2.82 2.099,-3.519l13.957,-7.543c0.899,-0.486 1.95,-0.609 2.937,-0.345l50.213,13.455c2.186,0.585 3.706,2.566 3.706,4.829l-0,74.889c-0,1.251 -0.586,2.431 -1.583,3.187c-0.998,0.756 -2.291,1.002 -3.496,0.665l-3.54,-0.992l3.663,-2.482l0,-73.569c-0,-0.905 -0.608,-1.697 -1.482,-1.932l-50.562,-13.548l-9.456,5.146l48.535,13.005c1.749,0.469 2.965,2.053 2.965,3.864l-0,75.718c-0,1.243 -0.578,2.416 -1.565,3.173c-0.987,0.757 -2.269,1.012 -3.47,0.69l-49.956,-13.385c-1.749,-0.469 -2.965,-2.054 -2.965,-3.864Z" style="fill:#fff;"></path>
+    <path d="M97.118,99.979c2.868,2.559 4.497,6.258 4.066,11.997c-0.481,6.406 -6.174,10.98 -17.853,6.854c-8.311,-2.936 -12.996,-10.157 -11.72,-16.928c1.071,-5.684 3.941,-7.693 7.722,-7.899c0.296,-2.643 0.708,-6.484 0.776,-8.004c0.109,-2.418 -0.367,-7.436 3.147,-6.833c3.514,0.602 3.551,4.571 3.542,7.735c-0.005,1.885 -0.329,5.477 -0.59,8.073c0.666,0.178 1.342,0.373 2.025,0.579c0.979,0.296 1.928,0.613 2.838,0.961c0.539,-2.632 1.325,-6.518 1.631,-8.232c0.484,-2.714 0.735,-5.595 3.589,-5.123c2.853,0.473 4.167,5.581 2.886,9.903c-0.733,2.475 -1.52,5.113 -2.059,6.917Z" style="fill:#f2668d;"></path>
+    NTO Logo
+  </svg>
+  <form action="." id="form_login">
+    <input type="text" name="input_name" id="input_name" placeholder="Username">
+    <input type="password" name="input_password" id="input_password" placeholder="Password">
+    <button id="btn_login" type="submit">Login</button>
+  </form>
+
+  <script type="text/javascript">
+   document.querySelector('#form_login').addEventListener('submit', e => {
+     e.preventDefault();
+     window.location.href = './menu.html';
+   });
+   </script>
+</body>
+</html>
